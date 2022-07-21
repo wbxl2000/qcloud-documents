@@ -1,25 +1,13 @@
-TRTCVideoCall 是基于腾讯云实时音视频（TRTC）和即时通信 IM 服务组合而成的，支持1v1和多人视频通话。TRTCVideoCall 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具体的实现过程请参见 [实时视频通话（Android）](https://cloud.tencent.com/document/product/647/42045)。
-- TRTC SDK：使用 [TRTC SDK](https://cloud.tencent.com/document/product/647) 作为低延时音视频通话组件。
-- IM SDK：使用 [IM SDK](https://cloud.tencent.com/document/product/269) 发送和处理信令消息。
+<h2 id="TUICallEngine">TUICallEngine API 概览</h2>
 
->?TUIKit 系列组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.tencent.com/document/product/647/16788) 和 [即时通信 IM](https://cloud.tencent.com/document/product/269/42440) 两个基础 PaaS 服务，开通实时音视频后会同步开通即时通信IM服务。即时通信 IM 服务详细计费规则请参见 [即时通信 - 价格说明](https://cloud.tencent.com/document/product/269/11673)，TRTC 开通会默认关联开通 IM SDK 的体验版，仅支持100个 DAU。
-
-
-<h2 id="TRTCVideoCall">TRTCVideoCall API 概览</h2>
-
-### SDK 基础函数
+### 创建实例和事件回调
 
 | API | 描述 |
 |-----|-----|
-| [sharedInstance](#sharedinstance) | 组件单例。|
-| [destroySharedInstance](#destroysharedinstance) | 销毁组件单例。|
-| [addListener](#addlistener) | 增加事件回调。|
-| [removeListener](#removelistener) | 移除回调接口。|
-| [init](#init) | 初始化函数，请在使用所有功能之前先调用该函数进行必要的初始化。|
-| [destroy](#destroy) | 销毁函数，如果无需再运行该实例，请调用该接口。|
-| [login](#login) | 登录组件接口，所有功能需要先进行登录后才能使用。|
-| [logout](#logout) | 登出组件接口，登出后无法再进行拨打操作。|
-
+| [sharedInstance](#sharedinstance) | 创建 TUICallEngine 实例（单例模式）|
+| [destroySharedInstance](#destroysharedinstance) | 销毁 TUICallEngine 实例（单例模式）|
+| [addObserver](#addObserver) | 增加事件回调。|
+| [removeObserver](#removeObserver) | 移除回调接口。|
 
 ### 通话操作相关接口函数
 
