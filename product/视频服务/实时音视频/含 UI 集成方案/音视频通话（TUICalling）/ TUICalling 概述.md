@@ -56,12 +56,13 @@ TUICalling 是一款音视频通话 UI 组件，通过在项目中集成 TUICall
 
 ![](https://qcloudimg.tencent-cloud.cn/raw/08f914b45857743fd05dfaa28e2adb72.png)
 
+>! **特别说明，基于开发者反馈和市场需求调研、在 2022/08 以后 TUICalling 推出了新的两组API：TUICallKit、TUICallEngine 分别面向含 UI 集成Calling用户，以及无UI集成的Calling用户， 两组新的API在功能特性更加强大，同时整合TRTC和IM两个腾讯云的重磅产品，推出了专属 TUICallKit、TUICallEngine的通话套餐，欢迎使用！**
+
 ## 优惠套餐
-此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，
+TUICalling 组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.tencent.com/document/product/647/16788) 和 [即时通信 IM](https://cloud.tencent.com/document/product/269/42440) 两个基础 PaaS 服务，基于服务的反馈
 
 
->?TUIKit 系列组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.tencent.com/document/product/647/16788) 和 [即时通信 IM](https://cloud.tencent.com/document/product/269/42440) 两个基础 PaaS 服务，开通实时音视频后会同步开通即时通信 IM 服务。即时通信 IM 服务详细计费规则请参见 [即时通信 - 价格说明](https://cloud.tencent.com/document/product/269/11673)，TRTC 开通会默认关联开通 IM SDK 的体验版，仅支持100个 DAU。
->
+此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，
 
 
 ## 版本信息
@@ -134,6 +135,9 @@ TUICalling 是一款音视频通话 UI 组件，通过在项目中集成 TUICall
             </div>
         </div>
 </div>
+
+> ? 关于TUICalling API、TRTCCalling API 版本的TUICalling，详见[开源建设](#开源建设)部分，欢迎共建。
+
 
 ## 版本对比
 <table>
@@ -227,6 +231,6 @@ TUICalling 是一款音视频通话 UI 组件，通过在项目中集成 TUICall
 
 
 ## 开源建设
-除上述 TUICalling 的正式版本之外，腾讯云音视频团队基于 TRTC+IM 两个核心SDK封装的开源通话组件，方便开发者更好的理解音视频通话的业务流程，详见 [**这里**](https://github.com/tencentyun/TUICalling)，欢迎了解~
+除上述 TUICalling 新版本之外，腾讯云音视频团队还基于 TRTC+IM 两个核心SDK封装了一个开源的通话组件，既原来的TUICalling API、TRTCCalling API，方便开发者更好的理解音视频通话的业务流程，详见 [**这里**](https://github.com/tencentyun/TUICalling)，欢迎了解~
 
 
