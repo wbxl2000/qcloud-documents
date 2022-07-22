@@ -1,9 +1,10 @@
+## TUICallKit 说明 
 TUICalling Android 平台音视频通话组件支持如下两种接入方式：
 
 - TUICallKit：含 UI 交互版本，交互体验”类微信“，支持悬浮窗、自定义铃音、贴耳息屏、离线推送等多个特性，适用于大部分通话场景；
 - TUICallEngine：无 UI 交互版本，仅包含通话业务相关的逻辑 API，适用于 UI 定制性较高的场景；
 
-本文以`TUICallKit`的接入为主，如果您需要使用`TUICallEngine`进行接入，可以参考 [TUICall Engine API]()。
+本文以`TUICallKit`的接入为主，如果您需要使用`TUICallEngine`进行接入，可以参考 [TUICallEngine API]()。
 
 
 ## 环境准备
@@ -57,10 +58,10 @@ TUICalling 组件在使用过程中，需要用到诸如相机、麦克风等权
 -keep class com.tencent.** { *; }
 ```
 
-### 步骤五：创建并初始化TUICallKit
+### 步骤五：创建并初始化 TUICallKit
 在完成上述步骤后，您就可以在您的应用中创建 TUICallKit 实例，并完成鉴权逻辑，这个步骤很关键，请您耐心检查相关参数是否配置正确；
 ```java
-TUICallKit callKit = TUICallKit.sharedInstance(context).init(int sdkappid, String userId， String userSig);
+TUICallKit callKit = TUICallKit.sharedInstance(Context).init(int sdkappid, String userId， String userSig);
 
 ```
 **参数说明**：
@@ -92,10 +93,11 @@ callKit.call(["100001"], TUICallDefine.MediaType.Video);  // 发起1对1视频�
 ## 其他特性
 
 ### 一. 设置昵称&头像
-如果您的业务需要 [监听通话的状态](https://cloud.tencent.com/document/product/647/47712#setcallinglistener)，例如通话开始、结束等，可以监听以下事件：
+如果您需要自定义头像或者昵称可以使用如下接口进行更新：
+```java
+TUICallKit.sharedInstance(context).setSelfInfo("昵称", "头像 URL", callback)；
 ```
-```
-
+> ! 这里有个常见问题：因为用户隐私限制，非好友之间的通话，被叫的头像更新可能会有延迟，一次通话成功后就会顺利更新，知悉~
 
 ### 二. 离线推送
 
@@ -103,14 +105,11 @@ callKit.call(["100001"], TUICallDefine.MediaType.Video);  // 发起1对1视频�
 
 ### 三. 悬浮窗功能
 如果您的业务需要开启悬浮窗功能，您可以在 TUICallKit 组件初始化时调用 `TUICallKit.sharedInstance(context).enableFloatWindow(true)` 开启该功能。
-  
-目前组件支持以下两种情况悬浮窗：
-- 系统悬浮窗(单击 home 键退到后台)：需开启悬浮窗权限。
-- 应用内悬浮窗(最小化退到上一层界面)：需开启悬浮窗权限，其中开启悬浮窗权限方法：打开**手机设置**，找到**应用管理**，找到您的应用，单击**权限**，单击**悬浮窗并允许**（手机厂商、平台不同，该位置可能有差异）。
 
 ### 四. 通话状态监听
 如果您的业务需要 [监听通话的状态](https://cloud.tencent.com/document/product/647/47712#setcallinglistener)，例如通话开始、结束等，可以监听以下事件：
 ```
+
 ```
 
 ### 五. 自定义铃音
