@@ -2,22 +2,15 @@
 
 TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallKit 的交互并不满足您的需求，您可以使用这套接口自己封装交互。
 
-<h2 id="TUICallEngine">TUICallEngine API 概览</h2>
-
-### 创建实例和事件回调
+<h2 id="TUICallEngine"> API 概览</h2>
 
 | API | 描述 |
 |-----|-----|
-| [sharedInstance](#sharedinstance) | 创建 TUICallEngine 实例（单例模式）|
-| [destroySharedInstance](#destroysharedinstance) | 销毁 TUICallEngine 实例（单例模式）|
+| [createInstance](#createInstance) | 创建 TUICallEngine 实例（单例模式）|
+| [destroyInstance](#destroyInstance) | 销毁 TUICallEngine 实例（单例模式）|
 | [init](#init) | 完成音视频通话基础能力的鉴权|
 | [addObserver](#addObserver) | 增加事件回调|
 | [removeObserver](#removeObserver) | 移除回调接口|
-
-### 通话操作相关接口函数
-
-| API | 描述 |
-|-----|-----|
 | [call](#call) | 发起 1v1 通话|
 | [groupCall](#groupCall) | 发起群组通话|
 | [accept](#accept) | 接听通话 |
@@ -30,38 +23,26 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 | [setRenderView](#setRenderView) | 设置显示视频画面的 View 对象 |
 | [startRemoteView](#startRemoteView) | 设置显示视频画面的 View 对象 |
 | [stopRemoteView](#stopRemoteView) | 设置显示视频画面的 View 对象 |
-
-### 设备控制相关接口函数
-
-| API | 描述 |
-|-----|-----|
 | [openCamera](#opencamera) | 开启摄像头|
 | [closeCamara](#closecamara) | 关闭摄像头|
 | [switchCamera](#switchcamera) | 切换前后摄像头|
 | [openMicrophone](#setmicmute) | 打开麦克风|
 | [closeMicrophone](#sethandsfree) | 关闭麦克风|
 | [selectAudioPlaybackDevice](#setmicmute) | 选择音频播放设备（听筒/免提）|
-
-
-### 其他接口函数
-
-| API | 描述 |
-|-----|-----|
 | [setSelfInfo](#setSelfInfo) | 设置用户的头像、昵称|
 | [enableMultiDeviceAbility](#enableMultiDeviceAbility) | 开启/关闭 TUICallEngine 的多设备登录模式 （尊享版套餐支持）|
 
-
-##  创建实例和事件回调
-### sharedInstance
+<h2 id="TUICallEngine"> API 详情</h2>
+### createInstance
 创建 TUICallEngine 的单例。
 ```java
-TUICallEngine sharedInstance(Context context)
+TUICallEngine createInstance(Context context)
 ```
 
-### destroySharedInstance
+### destroyInstance
 销毁 TUICallEngine 的单例。
 ```java
-void destroySharedInstance();
+void destroyInstance();
 ```
 
 ### init
@@ -91,7 +72,6 @@ void addObserver(TUICallObserver observer);
 void removeListener(TRTCVideoCallListener listener);
 ```
 
-## 通话操作相关接口函数
 ### call
 拨打电话（1v1通话）
 
@@ -181,7 +161,6 @@ void switchCallMediaType(TUICallDefine.MediaType callMediaType);
 void setRenderView(String userId, TUIVideoView videoView, TUIDefine.Callback callback);
 ```
 
-## 设备控制相关接口函数
 ### openCamera
 
 开启摄像头。
@@ -222,8 +201,6 @@ void closeMicrophone();
 void selectAudioPlaybackDevice(TUICallDefine.AudioPlaybackDevice audioPlayType);
 ```
 
-
-## 其他接口函数
 ### setSelfInfo
 设置用户头像、昵称的接口。
 ```java

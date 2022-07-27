@@ -52,17 +52,25 @@
 
 ## 组件介绍
 
-TUICalling 是一款音视频通话 UI 组件，通过在项目中集成 TUICalling 组件，您只需要编写几行代码就可以为您的应用添加“一对一音视频通话”场景，并且支持离线唤起能力。TUICalling  同时支持 iOS、Web、小程序、Flutter、UniApp 等平台，基本功能如下图所示：
+TUICalling 是腾讯云推出一款音视频通话 UI 组件，通过在项目中集成 TUICalling 组件，您只需要编写几行代码就可以为您的应用添加“一对一音视频通话”场景，并且支持离线唤起能力。TUICalling  支持Android、iOS、Web、小程序、Flutter、UniApp 等多个平台，基本功能如下图所示：
 
 ![](https://qcloudimg.tencent-cloud.cn/raw/08f914b45857743fd05dfaa28e2adb72.png)
 
->! **特别说明，基于开发者反馈和市场需求调研、在 2022/08 以后 TUICalling 推出了新的两组API：TUICallKit、TUICallEngine 分别面向含 UI 集成Calling用户，以及无UI集成的Calling用户， 两组新的API在功能特性更加强大，同时整合TRTC和IM两个腾讯云的重磅产品，推出了专属 TUICallKit、TUICallEngine的通话套餐，欢迎使用！**
+
+#### 功能优势
+- 接入方便：提供带 UI 的开源组件，节省90%开发时间，快速上线音视频通话应用；
+- 多平台互通：各平台的TUICalling 组件间均支持相互拨打、接听、挂断等，互联互通；
+- 大小窗切换：主叫方和被叫方自由切换本地的视频窗口；
+- 离线推送：支持Android&iOS离线推送，被叫用户 App 不在线时收到电话通知；
+
+### 适用场景
+两人或多人进行音视频通话，覆盖游戏社交、在线客服、视频客服、在线问诊、保险咨询等场景。
+
+
+>! **特别说明，基于开发者反馈和市场需求调研、 2022年08月 TUICalling 推出了新的两组API：TUICallKit、TUICallEngine 分别面向含 UI 集成Calling用户，以及无UI集成的Calling用户， 两组新的API在功能特性更加强大，同时整合TRTC和IM两个腾讯云的重磅产品，推出了专属 TUICallKit、TUICallEngine的通话套餐，欢迎使用！**
 
 ## 优惠套餐
-TUICalling 组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.tencent.com/document/product/647/16788) 和 [即时通信 IM](https://cloud.tencent.com/document/product/269/42440) 两个基础 PaaS 服务，基于服务的反馈
-
-
-此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，
+TUICalling 组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.tencent.com/document/product/647/16788) 和 [即时通信 IM](https://cloud.tencent.com/document/product/269/42440) 两个基础 PaaS 服务，基于服务的反馈.......此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，此处省略300字，
 
 
 ## 版本信息
@@ -74,9 +82,9 @@ TUICalling 组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.t
                 <p class="titlename">Android  TUICalling</p>
                 <p style="color:#586376;">类“微信” UI，支持 1V1 通话、群组通话、悬浮窗、离线推送等特性，功能强大。</p>
                 <a style="margin-left: 10px;" href=""><b>Github </b></a>
-								<a style="margin-left: 10px;" href=""><b>跑通示例</b></a>
-                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速集成</b></a>
+                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速接入</b></a>
                 <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32166"><b>API 参考</b></a>
+                <a style="margin-left: 10px;" href=""><b>常见问题</b></a>
             </div>
         </div>
 				<div class="card-container">
@@ -85,9 +93,9 @@ TUICalling 组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.t
                 <p class="titlename">iOS  TUICalling</p>
                 <p style="color:#586376;">类“微信” UI，支持 1V1 通话、群组通话、悬浮窗、离线推送等特性，功能强大。</p>
                 <a style="margin-left: 10px;" href=""><b>Github </b></a>
-								<a style="margin-left: 10px;" href=""><b>跑通示例</b></a>
-                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速集成</b></a>
+                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速接入</b></a>
                 <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32166"><b>API 参考</b></a>
+                <a style="margin-left: 10px;" href=""><b>常见问题</b></a>
             </div>
         </div>
 				<div class="card-container">
@@ -96,9 +104,9 @@ TUICalling 组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.t
                 <p class="titlename">Web  TUICalling</p>
                 <p style="color:#586376;">类“微信” UI，支持 1V1 通话、群组通话、悬浮窗、离线推送等特性，功能强大。</p>
                 <a style="margin-left: 10px;" href=""><b>Github </b></a>
-								<a style="margin-left: 10px;" href=""><b>跑通示例</b></a>
-                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速集成</b></a>
+                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速接入</b></a>
                 <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32166"><b>API 参考</b></a>
+                <a style="margin-left: 10px;" href=""><b>常见问题</b></a>
             </div>
         </div>
 				<div class="card-container">
@@ -107,9 +115,9 @@ TUICalling 组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.t
                 <p class="titlename">小程序  TUICalling</p>
                 <p style="color:#586376;">类“微信” UI，支持 1V1 通话、群组通话、悬浮窗、离线推送等特性，功能强大。</p>
                 <a style="margin-left: 10px;" href=""><b>Github </b></a>
-								<a style="margin-left: 10px;" href=""><b>跑通示例</b></a>
-                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速集成</b></a>
+                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速接入</b></a>
                 <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32166"><b>API 参考</b></a>
+                <a style="margin-left: 10px;" href=""><b>常见问题</b></a>
             </div>
         </div>
 			  <div class="card-container">
@@ -127,16 +135,15 @@ TUICalling 组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.t
 						<div class="card">
                  <img src="https://main.qcloudimg.com/raw/e9d18b164152f08bc0694c01e966daea.png" data-nonescope="true">
                 <p class="titlename">Uni-APP（小程序）TUICalling</p>
-                <p style="color:#586376;">类“微信” UI，支持 1V1 通话、群组通话、悬浮窗、离线推送等特性，功能强大。</p>
                 <a style="margin-left: 10px;" href=""><b>Github </b></a>
-								<a style="margin-left: 10px;" href=""><b>跑通示例</b></a>
-                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速集成</b></a>
+                <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32175"><b>快速接入</b></a>
                 <a style="margin-left: 10px;" href="https://cloud.tencent.com/document/product/647/32166"><b>API 参考</b></a>
+                <a style="margin-left: 10px;" href=""><b>常见问题</b></a>
             </div>
         </div>
 </div>
 
-> ? 关于TUICalling API、TRTCCalling API 版本的TUICalling，详见[开源建设](#开源建设)部分，欢迎共建。
+> ? 关于TUICalling API、TRTCCalling API 版本的TUICalling，详见[开源建设](#开源建设)部分，欢迎诸位开发者一起参与共建。
 
 
 ## 版本对比
@@ -232,5 +239,3 @@ TUICalling 组件同时使用了腾讯云 [实时音视频 TRTC](https://cloud.t
 
 ## 开源建设
 除上述 TUICalling 新版本之外，腾讯云音视频团队还基于 TRTC+IM 两个核心SDK封装了一个开源的通话组件，既原来的TUICalling API、TRTCCalling API，方便开发者更好的理解音视频通话的业务流程，详见 [**这里**](https://github.com/tencentyun/TUICalling)，欢迎了解~
-
-

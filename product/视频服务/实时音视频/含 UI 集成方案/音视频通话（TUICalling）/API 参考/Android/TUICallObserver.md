@@ -1,25 +1,17 @@
-<h2 id="TUICallObserver">TUICallObserver API 概览</h2>
+## TUICallObserver API 简介
 
-### 通用事件回调
+TUICallObserver 是 TUICallEngine 对应的回调事件类，您可以通过此回调，来监听自己感兴趣的回调事件。
+
+<h2 id="TUICallObserver"> 回调事件概览</h2>
 
 | API | 描述 |
 |-----|-----|
 | [onError](#onError) | 通话过程中错误回调|
-
-### 通话相关事件回调
-
-| API | 描述 |
-|-----|-----|
 | [onCallReceived](#onCallReceived) | 通话请求的回调|
 | [onCallCancelled](#onCallCancelled) | 通话取消的回调 |
 | [onCallBegin](#onCallBegin) | 通话接通的回调|
 | [onCallEnd](#onCallEnd) | 通话结束的回调|
 | [onCallTypeChanged](#onCallTypeChanged) | 通话的媒体类型发生改变的回调|
-
-
-### 用户相关事件回调
-| API | 描述 |
-|-----|-----|
 | [onUserReject](#onUserReject) |  xxxx 用户拒绝通话的回调 |
 | [onUserNoResponse](#onUserNoResponse) |  xxxx 用户不响应的回调|
 | [onUserLineBusy](#onUserLineBusy) | xxxx 用户忙线的回调|
@@ -30,8 +22,7 @@
 | [onUserVoiceVolumeChanged](#onUserVoiceVolumeChanged) | 所有用户音量大小的反馈回调 |
 | [onUserNetworkQualityChanged](#onUserNetworkQualityChanged) | 所有用户网络质量的反馈回调。|
 
-
-## 通用事件回调
+<h2 id="TUICallObserver"> 回调事件详情</h2>
 ### onError
 
 错误回调。
@@ -47,9 +38,6 @@ void onError(int code, String msg);
 |-----|-----|-----|
 | code | int | 错误码。 |
 | msg | String | 错误信息。 |
-
-
-## 通话相关事件回调
 
 ### onCallReceived
 
@@ -89,8 +77,6 @@ void onCallEnd(TUIDefine.RoomId roomId, TUICallDefine.MediaType callMediaType, T
 void onCallMediaTypeChanged(TUICallDefine.MediaType oldCallMediaType,
                                 TUICallDefine.MediaType newCallMediaType);
 ```
-
-### 用户相关事件回调
 
 ### onUserReject
 

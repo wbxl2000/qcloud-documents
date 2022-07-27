@@ -2,22 +2,21 @@
 
 TUICallKit API 是音视频通话组件的**含 UI 接口**，使用TUICallKit API，您可以通过简单接口快速实现一个类微信的音视频通话场景，更详细的接入步骤，详见：[快速接入TUICallKit（）]()
 
-<h2 id="TUICallKit">TUICallKit API 概览</h2>
+<h2 id="TUICallKit">API 概览</h2>
 
 
 | API | 描述 |
 |-----|-----|
-| [sharedInstance](#sharedinstance) | 创建 TUICallKit 实例（单例模式）|
+| [createInstance](#sharedinstance) | 创建 TUICallKit 实例（单例模式）|
 | [setSelfInfo](#setSelfInfo) | 设置用户的头像、昵称|
 | [call](#call) | 发起 1v1 通话|
 | [groupCall](#groupCall) | 发起群组通话|
 | [joinInGroupCall](#joinInGroupCall) | 主动加入当前的群组通话中 |
-| [setCallingBell](#switchCallMediaType) | 切换通话媒体类型，比如视频通话切音频通话|
-| [enableMuteMode](#setRenderView) | 设置显示视频画面的 View 对象 |
-| [enableFloatWindow](#startRemoteView) | 设置显示视频画面的 View 对象 |
+| [setCallingBell](#setCallingBell) | 设置自定义来电铃音 |
+| [enableMuteMode](#enableMuteMode) | 开启/关闭静音模式 |
+| [enableFloatWindow](#enableFloatWindow) | 开启/关闭悬浮窗功能 |
 
-
-##  创建实例和事件回调
+<h2 id="TUICallKit">API 详情</h2>
 ### sharedInstance
 创建 TUICallKit 的单例。
 ```java

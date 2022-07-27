@@ -20,7 +20,7 @@ TUICalling Android 平台音视频通话组件支持如下两种接入方式：
 
 ### 步骤一：下载并导入 TUICallKit 组件
 点击进入 [TUICalling Github](https://github.com/tencentyun/TUICalling) ，选择克隆/下载代码，然后拷贝 Android 目录下的 tuicallkit 目录到您的工程的 app 同一级目录中，类似下图：
-
+![](https://qcloudimg.tencent-cloud.cn/raw/5184b651c273ff1727065866cc45cd9a.png)
 
 ### 步骤二：配置 Android Gradle 文件
 
@@ -67,7 +67,7 @@ TUICallKit callKit = TUICallKit.sharedInstance(Context).init(int sdkappid, Strin
 **参数说明**：
 - **SDKAppID**：**TRTC 应用ID**，如果您未开通腾讯云 TRTC 服务，可进入 [腾讯云实时音视频控制台](https://console.cloud.tencent.com/trtc/app)，创建一个新的 TRTC 应用后，单击**应用信息**，SDKAppID 信息如下图所示：
 ![](https://qcloudimg.tencent-cloud.cn/raw/3d6ebfa2a1e4ae5d3af3ecd564fb1463.png)
-- **Secretkey**：**TRTC 应用密钥**，和 SDKAppId 对应，进入 [TRTC 应用管理](https://console.cloud.tencent.com/trtc/app) 后，SecretKey 信息如上图所示。
+- **Secretkey**：**TRTC 应用密钥**，和 SDåKAppId 对应，进入 [TRTC 应用管理](https://console.cloud.tencent.com/trtc/app) 后，SecretKey 信息如上图所示。
 - **userId**：当前用户的 ID，字符串类型，长度不超过32字节，不支持使用特殊字符，建议使用英文或数字，可结合业务实际账号体系自行设置。
 - **userSig**：根据 SDKAppId、userId，Secretkey 等信息计算得到的安全保护签名，您可以单击 [这里](https://console.cloud.tencent.com/trtc/usersigtool) 直接在线生成一个调试的 UserSig，也可以参照我们的 [TUICalling示例工程](https://github.com/tencentyun/TUICalling/blob/main/Android/app/src/main/java/com/tencent/liteav/demo/LoginActivity.java#L74)自行计算，更多信息请参见 [如何计算及使用 UserSig](https://cloud.tencent.com/document/product/647/17275)。
 
@@ -78,19 +78,35 @@ TUICallKit callKit = TUICallKit.sharedInstance(Context).init(int sdkappid, Strin
 
 
 
-###  步骤六：实现音视频通话
+###  步骤六：拨打通话
 
-- **实现1对1视频通话/音频通话 [TUICalling#call](https://cloud.tencent.com/document/product/647/47712#call)**：
+- **实现1对1视频通话**：
 ```java
-callKit.call(["100001"], TUICallDefine.MediaType.Video);  // 发起1对1视频通话，假设userId为：100001；
+// 发起1对1视频通话，假设userId为：100001；
+TUICallKit.sharedInstance(Context).call("100001", TUICallDefine.MediaType.Video);  
 ```
+>? TUICallKit 目前还不支持发起非群组的多人视频通话，如果您有此类需求，欢迎反馈： [TUICalling 需求收集表]()。
 
->!
->- 当接收方完成步骤五后，即初始化成功后，在收到来电请求后，TUICallKit 组件会自动启动相应的接听界面，知悉；    
->- 如果您想发起语音通话，更改类型为 `TUICallDefine.MediaType.Audio` 即可。
+- **实现群组视频通话**：
+```java
+TUICallKit.sharedInstance(Context).groupCall("12345678", ["100001", "100002", "100003"], TUICallDefine.MediaType.Video); 
+```
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| groupId | String | 群组 Id，示例：`"12345678"` |
+| userIds | Array | 目标用户的userId 列表，示例：`["100001", "100002", "100003"]` |
+| mediaType | TUICallMediaType | 通话的媒体类型，示例：`TUICallDefine.MediaType.Video` |
 
+>? 群组的创建详见：[ IM 群组管理](https://cloud.tencent.com/document/product/269/75394#.E5.88.9B.E5.BB.BA.E7.BE.A4.E7.BB.84) ，或者您也可以直接使用 [IM TUIKit](https://cloud.tencent.com/document/product/269/37059)，一站式集成聊天、通话等场景。
 
-## 其他特性
+###  步骤七：接听通话
+在步骤五完成后，收到来电请求后，TUICallKit 组件会自动启动相应的接听界面，不过因为Android 系统权限的原因，分为如下几种情况：
+- 您的App 在前台时，当收到邀请时会自动弹出呼叫界面并播放来电铃音；
+- 您的App 在后台，但是有授予悬浮窗权限后者后台弹出界面等权限时，仍然会自动弹出呼叫界面并播放来电铃音；
+- 您的App 在后台，且没有授予悬浮窗权限后者后台弹出界面等权限时，TUICallKit 会播放来电铃音，提示用户接听或挂断；
+- 您的App 进程已经被销毁，只能通过接入[**Andorid 离线推送**]()，通过通知栏消息提示用户接听或挂断；
+
+## 更多特性
 
 ### 一. 设置昵称&头像
 如果您需要自定义头像或者昵称可以使用如下接口进行更新：
@@ -107,11 +123,26 @@ TUICallKit.sharedInstance(context).setSelfInfo("昵称", "头像 URL", callback)
 如果您的业务需要开启悬浮窗功能，您可以在 TUICallKit 组件初始化时调用 `TUICallKit.sharedInstance(context).enableFloatWindow(true)` 开启该功能。
 
 ### 四. 通话状态监听
-如果您的业务需要 [监听通话的状态](https://cloud.tencent.com/document/product/647/47712#setcallinglistener)，例如通话开始、结束等，可以监听以下事件：
-```
-
+如果您的业务需要 [监听通话的状态](https://cloud.tencent.com/document/product/647/47712#setcallinglistener)，例如通话开始、结束，以及通话过程中的网络质量等等，就可以监听以下事件：
+```java
+TUICallEngine.sharedInstance(mContext).addObserver(new TUICallObserver() {
+    @Override
+    public void onCallBegin(TUIDefine.RoomId roomId, TUICallDefine.MediaType callMediaType,
+                            TUICallDefine.Role callRole) {
+    }
+    public void onCallEnd(TUIDefine.RoomId roomId, TUICallDefine.MediaType callMediaType,
+                            TUICallDefine.Role callRole, long totalTime) {
+    }
+    public void onUserNetworkQualityChanged(List<TUICallDefine.NetworkQualityInfo> networkQualityList) {
+    }
+});
 ```
 
 ### 五. 自定义铃音
+如果您需要自定义来电铃音，可以通过如下接口进行设置：
+```java
+TUICallKit.sharedInstance(context).setCallingBell(filePath);
+```
+
 
 
