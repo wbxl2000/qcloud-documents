@@ -35,18 +35,16 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 | [joinInGroupCall](#joinInGroupCall) | 主动加入当前的群组通话中 |
 | [switchCallMediaType](#switchCallMediaType) | 切换通话媒体类型，比如视频通话切音频通话|
 | [setRenderView](#setRenderView) | 设置显示视频画面的 View 对象 |
-| [startRemoteView](#startRemoteView) | 设置显示视频画面的 View 对象 |
-| [stopRemoteView](#stopRemoteView) | 设置显示视频画面的 View 对象 |
+| [startRemoteView](#startRemoteView) | 开始订阅远端用户视频流 |
+| [stopRemoteView](#stopRemoteView) | 停止订阅远端用户视频流 |
 | [openCamera](#opencamera) | 开启摄像头|
 | [closeCamara](#closecamara) | 关闭摄像头|
 | [switchCamera](#switchcamera) | 切换前后摄像头|
 | [openMicrophone](#setmicmute) | 打开麦克风|
 | [closeMicrophone](#sethandsfree) | 关闭麦克风|
-| [selectAudioPlaybackDevice](#setmicmute) | 选择音频播放设备（听筒/免提）|
-| [setSelfInfo](#setSelfInfo) | 设置用户的头像、昵称|
+| [selectAudioPlaybackDevice](#setmicmute) | 选择音频播放设备（听筒/扬声器）|
+| [setSelfInfo](#setSelfInfo) | 设置用户的昵称、头像|
 | [enableMultiDeviceAbility](#enableMultiDeviceAbility) | 开启/关闭 TUICallEngine 的多设备登录模式 （尊享版套餐支持）|
-
-
 
 ## TUICallObserver 
 TUICallObserver 是 TUICallEngine 对应的回调事件类，您可以通过此回调，来监听自己感兴趣的回调事件。
@@ -58,7 +56,7 @@ TUICallObserver 是 TUICallEngine 对应的回调事件类，您可以通过此�
 | [onCallCancelled](#onCallCancelled) | 通话取消的回调 |
 | [onCallBegin](#onCallBegin) | 通话接通的回调|
 | [onCallEnd](#onCallEnd) | 通话结束的回调|
-| [onCallTypeChanged](#onCallTypeChanged) | 通话的媒体类型发生改变的回调|
+| [onCallMediaTypeChanged](#onCallMediaTypeChanged) | 通话的媒体类型发生改变的回调|
 | [onUserReject](#onUserReject) |  xxxx 用户拒绝通话的回调 |
 | [onUserNoResponse](#onUserNoResponse) |  xxxx 用户不响应的回调|
 | [onUserLineBusy](#onUserLineBusy) | xxxx 用户忙线的回调|

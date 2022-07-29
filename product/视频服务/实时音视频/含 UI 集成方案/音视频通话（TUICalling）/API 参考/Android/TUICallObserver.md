@@ -11,7 +11,7 @@ TUICallObserver 是 TUICallEngine 对应的回调事件类，您可以通过此�
 | [onCallCancelled](#onCallCancelled) | 通话取消的回调 |
 | [onCallBegin](#onCallBegin) | 通话接通的回调|
 | [onCallEnd](#onCallEnd) | 通话结束的回调|
-| [onCallTypeChanged](#onCallTypeChanged) | 通话的媒体类型发生改变的回调|
+| [onCallMediaTypeChanged](#onCallMediaTypeChanged) | 通话媒体类型发生改变的回调|
 | [onUserReject](#onUserReject) |  xxxx 用户拒绝通话的回调 |
 | [onUserNoResponse](#onUserNoResponse) |  xxxx 用户不响应的回调|
 | [onUserLineBusy](#onUserLineBusy) | xxxx 用户忙线的回调|
@@ -23,6 +23,7 @@ TUICallObserver 是 TUICallEngine 对应的回调事件类，您可以通过此�
 | [onUserNetworkQualityChanged](#onUserNetworkQualityChanged) | 所有用户网络质量的反馈回调。|
 
 <h2 id="TUICallObserver"> 回调事件详情</h2>
+
 ### onError
 
 错误回调。
@@ -43,21 +44,21 @@ void onError(int code, String msg);
 
 收到一个新的来电请求回调，被叫会收到，您可以通过监听这个事件，来决定是否显示通话接听界面。
 ```java
-onCallReceived(String callerId, List<String> userIdList, boolean isFromGroup, TUICallDefine.MediaType callMediaType);
+void onCallReceived(String callerId, List<String> calleeIdList, boolean isGroupCall, TUICallDefine.MediaType callMediaType);
 ```
 
 ### onCallCancelled
 
 表示此次通话被主叫取消（取消原因有可能是主叫主动取消、也有可能是来自于通话超时取消），被叫会收到，您可以通过监听这个事件来实现类似未接来电等显示逻辑。
 ```java
-  void onCallCancelled(String callerId);
+void onCallCancelled(String callerId);
 ```
 
 ### onCallBegin
 
 表示通话接通，主叫和被叫都可以收到，您可以通过监听这个事件来开启云端录制、内容审核等流程。
 ```java
-  void onCallBegin(TUIDefine.RoomId roomId, TUICallDefine.MediaType callMediaType, TUICallDefine.Role callRole);
+void onCallBegin(TUIDefine.RoomId roomId, TUICallDefine.MediaType callMediaType, TUICallDefine.Role callRole);
 ```
 
 ### onCallEnd
@@ -74,8 +75,7 @@ void onCallEnd(TUIDefine.RoomId roomId, TUICallDefine.MediaType callMediaType, T
 
 表示通话的媒体类型发生变化。
 ```java
-void onCallMediaTypeChanged(TUICallDefine.MediaType oldCallMediaType,
-                                TUICallDefine.MediaType newCallMediaType);
+void onCallMediaTypeChanged(TUICallDefine.MediaType oldCallMediaType,TUICallDefine.MediaType newCallMediaType);
 ```
 
 ### onUserReject
@@ -118,34 +118,33 @@ void onUserJoin(String userId);
 void onUserLeave(String userId);
 ```
 
-### onUserAudioAvailable
-
-用户是否开启音频上行回调。·
-```java
-void onUserAudioAvailable(String userId, boolean available);
-```
-
-参数如下表所示：
-
-| 参数 | 类型 | 含义 |
-|-----|-----|-----|
-| userId | String | 用户 ID。|
-| available | boolean | 用户音频是否可用。|
-
 ### onUserVideoAvailable
 
 用户是否开启视频上行回调。
 ```java
-void onUserVideoAvailable(String userId, boolean available);
+void onUserVideoAvailable(String userId, boolean isVideoAvailable);
 ```
 
 参数如下表所示：
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| userId | String | 通话用户 ID。|
-| available | boolean | 用户视频是否可用。|
+| userId | String | 通话用户 ID|
+| isVideoAvailable | boolean | 用户视频是否可用|
 
+### onUserAudioAvailable
+
+用户是否开启音频上行回调。·
+```java
+void onUserAudioAvailable(String userId, boolean isAudioAvailable);
+```
+
+参数如下表所示：
+
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| userId | String | 用户 ID|
+| isAudioAvailable | boolean | 用户音频是否可用|
 
 ### onUserVoiceVolumeChanged
 

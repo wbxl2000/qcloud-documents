@@ -21,18 +21,19 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 | [joinInGroupCall](#joinInGroupCall) | 主动加入当前的群组通话中 |
 | [switchCallMediaType](#switchCallMediaType) | 切换通话媒体类型，比如视频通话切音频通话|
 | [setRenderView](#setRenderView) | 设置显示视频画面的 View 对象 |
-| [startRemoteView](#startRemoteView) | 设置显示视频画面的 View 对象 |
-| [stopRemoteView](#stopRemoteView) | 设置显示视频画面的 View 对象 |
+| [startRemoteView](#startRemoteView) | 开始订阅远端用户视频流 |
+| [stopRemoteView](#stopRemoteView) | 停止订阅远端用户视频流 |
 | [openCamera](#opencamera) | 开启摄像头|
 | [closeCamara](#closecamara) | 关闭摄像头|
 | [switchCamera](#switchcamera) | 切换前后摄像头|
 | [openMicrophone](#setmicmute) | 打开麦克风|
 | [closeMicrophone](#sethandsfree) | 关闭麦克风|
-| [selectAudioPlaybackDevice](#setmicmute) | 选择音频播放设备（听筒/免提）|
-| [setSelfInfo](#setSelfInfo) | 设置用户的头像、昵称|
+| [selectAudioPlaybackDevice](#setmicmute) | 选择音频播放设备（听筒/扬声器）|
+| [setSelfInfo](#setSelfInfo) | 设置用户的昵称、头像|
 | [enableMultiDeviceAbility](#enableMultiDeviceAbility) | 开启/关闭 TUICallEngine 的多设备登录模式 （尊享版套餐支持）|
 
 <h2 id="TUICallEngine"> API 详情</h2>
+
 ### createInstance
 创建 TUICallEngine 的单例。
 ```java
@@ -65,41 +66,40 @@ void init(String sdkAppID, String userId, String userSig， TUIDefine.Callback c
 void addObserver(TUICallObserver observer);
 ```
 
-
-### removeListener
+### removeObserver
 移除回调接口。
 ```java
-void removeListener(TRTCVideoCallListener listener);
+void removeObserver(TUICallObserver observer);
 ```
 
 ### call
 拨打电话（1v1通话）
 
 ```java
- void call(TUIRoomId roomId，String userId, TUICallMediaType mediaType, TUICallback callback)
+void call(TUIDefine.RoomId roomId, String userId, TUICallDefine.MediaType callMediaType,TUIDefine.Callback callback);
 ```
 
 参数如下表所示：
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| roomId | TUIRoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
+| roomId | TUIDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
 | userId | String | 目标用户的userId |
-| mediaType | TUICallMediaType | 通话的媒体类型，比如视频通话、语音通话 |
+| callMediaType | TUICallDefine.MediaType | 通话的媒体类型，比如视频通话、语音通话 |
 
 ### groupCall
 发起群组通话，注意：使用群组通话前需要创建IM 群组，如果已经创建，请忽略；
 
 ```java
-void groupCall(TUIRoomId roomId，String groupId, List<String> userIdList, TUICallingType callingType，TUICallback callback)
+void groupCall(TUIDefine.RoomId roomId, String groupId, List<String> userIdList,TUICallDefine.MediaType callMediaType, TUIDefine.Callback callback);
 ```
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| roomId | TUIRoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
-| groupId | String | 此次群组通话的群 Id. |
+| roomId | TUIDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
+| groupId | String | 此次群组通话的群 Id |
 | userIdList | List | 目标用户的userId 列表 |
-| mediaType | TUICallMediaType | 通话的媒体类型，比如视频通话、语音通话 |
+| callMediaType | TUICallDefine.MediaType | 通话的媒体类型，比如视频通话、语音通话 |
 
 
 ### accept
@@ -137,6 +137,9 @@ void hangup(TUIDefine.Callback callback);
 ```java
 void inviteUser(List<String> userIdList, TUIDefine.ValueCallback callback);
 ```
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| userIdList | List | 目标用户的userId列表 |
 
 ### joinInGroupCall
 主动加入此次群组通话，使用场景：群组内用户主动加入此次群组通话使用。
@@ -144,6 +147,11 @@ void inviteUser(List<String> userIdList, TUIDefine.ValueCallback callback);
 ```java
 void joinInGroupCall(TUIDefine.RoomId roomId, String groupId, TUICallDefine.MediaType callMediaType, TUIDefine.Callback callback);
 ```
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| roomId | TUIDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
+| groupId | String | 此次群组通话的群 Id |
+| callMediaType | TUICallDefine.MediaType | 通话的媒体类型，比如视频通话、语音通话 |
 
 ### switchCallMediaType
 切换视频通话到语音通话。
@@ -151,6 +159,9 @@ void joinInGroupCall(TUIDefine.RoomId roomId, String groupId, TUICallDefine.Medi
 ```java
 void switchCallMediaType(TUICallDefine.MediaType callMediaType);
 ```
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| callMediaType | TUICallDefine.MediaType | 通话的媒体类型，比如视频通话、语音通话 |
 
 ### setRenderView
 视频通话中，给本地和远端用户的设置视频画面显示的View，此接口调用时机如下：
@@ -161,12 +172,39 @@ void switchCallMediaType(TUICallDefine.MediaType callMediaType);
 void setRenderView(String userId, TUIVideoView videoView, TUIDefine.Callback callback);
 ```
 
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| userId | String | 目标用户的userId |
+| videoView| TUIVideoView | 待渲染的视图 |
+
+### startRemoteView
+开始订阅远端用户的视频数据，此接口在`setRenderView`之后调用。
+```java
+void startRemoteView(String userId, TUIDefine.PlayCallback callback);
+```
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| userId | String | 目标用户的userId |
+
+### stopRemoteReview
+停止订阅远端用户的视频数据。
+```java
+void stopRemoteView(String userId);
+```
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| userId | String | 目标用户的userId |
+
+
 ### openCamera
 
 开启摄像头。
 ```java
-void openCamera(TUICallDefine.Camera camera, TUIDefine.Callback callback);
+void openCamera(TUIDefine.Camera camera, TUIDefine.Callback callback);
 ```
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| camera | TUIDefine.Camera | 前置/后置 摄像头 |
 
 ### closeCamera
 
@@ -178,8 +216,11 @@ void closeCamera();
 ### switchCamera
 切换前后摄像头。
 ```java
-void switchCamera(TUICallDefine.Camera camera);
+void switchCamera(TUIDefine.Camera camera);
 ```
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| camera | TUIDefine.Camera | 前置/后置 摄像头 |
 
 ### openMicrophone
 
@@ -198,13 +239,16 @@ void closeMicrophone();
 
 选择音频播放设备，目前支持听筒、扬声器，在通话场景中，可以使用这个接口来开启/关闭免提模式。
 ```java
-void selectAudioPlaybackDevice(TUICallDefine.AudioPlaybackDevice audioPlayType);
+void selectAudioPlaybackDevice(TUIDefine.AudioPlaybackDevice device);
 ```
+| 参数 | 类型 | 含义 |
+|-----|-----|-----|
+| device | TUIDefine.AudioPlaybackDevice | 听筒/扬声器 |
 
 ### setSelfInfo
-设置用户头像、昵称的接口。
+设置用户昵称、头像的接口。
 ```java
-void setSelfInfo(String nickName, String avatar, TUIDefine.Callback callback);
+void setSelfInfo(String nickname, String avatar, TUIDefine.Callback callback);
 ```
 
 ### enableMultiDeviceAbility
