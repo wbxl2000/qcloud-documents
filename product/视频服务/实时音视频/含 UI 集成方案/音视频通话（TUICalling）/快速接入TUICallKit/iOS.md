@@ -1,4 +1,4 @@
-## TUICallKit 说明 
+﻿## TUICallKit 说明 
 TUICalling iOS 平台音视频通话组件支持如下两种接入方式：
 
 - TUICallKit：含 UI 交互版本，交互体验”类微信“，支持悬浮窗、自定义铃音、贴耳息屏、离线推送等多个特性，适用于大部分通话场景；
@@ -47,7 +47,7 @@ TUICalling iOS 平台音视频通话组件支持如下两种接入方式：
  }];
  
  // 2.初始化TUICalling实例
-[TUICallKit shareInstance];
+[TUICallKit createInstance];
 ```
 :::
 ::: Swift
@@ -60,7 +60,7 @@ TUILogin.login(Int32(SDKAPPID), userID: user, userSig: userSig) {
  }
  
 // 2.初始化TUICallKit实例
-TUICallKit.shareInstance()
+TUICallKit.createInstance()
 ```
 :::
 </dx-codeblock>
@@ -86,14 +86,14 @@ TUICallKit.shareInstance()
 :::  Objective-C
 ```
 // 发起1对1视频通话，假设userId为：100001；
-[[TUICallKit shareInstance] call: @"100001" callMediaType: TUICallMediaTypeVideo];
+[[TUICallKit createInstance] call: @"100001" callMediaType: TUICallMediaTypeVideo];
 ```
 ```
 :::
 ::: Swift
 ```
 // 2.初始化TUICalling实例
-TUICallKit.shareInstance().call(userId: "100001", callType: .video)
+TUICallKit.createInstance().call(userId: "100001", callType: .video)
 ```
 :::
 </dx-codeblock>
@@ -103,13 +103,13 @@ TUICallKit.shareInstance().call(userId: "100001", callType: .video)
 - - <dx-codeblock>
 :::  Objective-C
 ```
-[[TUICallKit shareInstance] groupCall: @[@"100001", @"100002", @"100003"] groupId: @"12345678"  callMediaType: TUICallMediaTypeVideo];
+[[TUICallKit createInstance] groupCall:@"12345678" userIdList:@[@"100001", @"100002", @"100003"] callMediaType:TUICallMediaTypeVideo];
 ```
 ```
 :::
 ::: Swift
 ```
-TUICallKit.shareInstance().groupCall(userIds: ["100001", "100002", "100003"], groupId:"12345678", callMediaType: .video)
+TUICallKit.createInstance().groupCall("12345678", userIdList: ["100001", "100002", "100003"], callMediaType: .video)
 ```
 :::
 </dx-codeblock>
@@ -132,7 +132,7 @@ TUICallKit.shareInstance().groupCall(userIds: ["100001", "100002", "100003"], gr
 - <dx-codeblock>
 :::  Objective-C
 ```
- [[TUICallKit shareInstance]setSelfInfo:@"昵称" avatar:@"头像url" succ:^{
+ [[TUICallKit createInstance]setSelfInfo:@"昵称" avatar:@"头像url" succ:^{
             NSLog(@"login success");
   } fail:^(int code, NSString *errMsg) {
             NSLog(@"login failed, code: %d, error: %@", code, errMsg);
@@ -142,7 +142,7 @@ TUICallKit.shareInstance().groupCall(userIds: ["100001", "100002", "100003"], gr
 :::
 ::: Swift
 ```
- TUICallKit.shareInstance().setSelfInfo(nickname: "昵称", avatar: "头像url") {
+ TUICallKit.createInstance().setSelfInfo(nickname: "昵称", avatar: "头像url") {
             print("login success")
   } fail: {(code, desc) in
             print("login failed, code: \(code), error: \(desc ?? "nil")")
@@ -157,7 +157,7 @@ TUICallKit.shareInstance().groupCall(userIds: ["100001", "100002", "100003"], gr
 完成以上步骤，就可以实现视频通话的拨打和接通，但如果您的业务场景需要在 `App 的进程被杀死后`或者 `App 退到后台后`，还可以正常接收到音视频通话请求，就需要为 TUICalling 组件增加离线推送功能，详情见 [**离线推送（iOS）**](https://cloud.tencent.com/document/product/269/44517)。
 
 ### 三. 悬浮窗功能
-如果您的业务需要开启 [悬浮窗功能](https://cloud.tencent.com/document/product/647/47748#enableFloatWindow)，您可以在 TUICallKit 组件初始化时调用` TUICallKit.shareInstance().enableFloatWindow(enable: true))`开启该功能。
+如果您的业务需要开启 [悬浮窗功能](https://cloud.tencent.com/document/product/647/47748#enableFloatWindow)，您可以在 TUICallKit 组件初始化时调用` TUICallKit.createInstance().enableFloatWindow(enable: true))`开启该功能。
 
 >? 目前组件仅支持应用内悬浮窗（最小化退到上一层界面）。。
 
@@ -165,7 +165,7 @@ TUICallKit.shareInstance().groupCall(userIds: ["100001", "100002", "100003"], gr
 如果您的业务需要 [监听通话的状态](https://cloud.tencent.com/document/product/647/47712#setcallinglistener)，例如通话开始、结束，以及通话过程中的网络质量等等，就可以监听以下事件：
 <dx-codeblock>
 :::  Objective-C Objectivec
-[[TUICallEngine shareInstance] addObserver:self];
+[[TUICallEngine createInstance] addObserver:self];
 
 - (void)onCallBegin:(nonnull TUIRoomId *)roomId callMediaType:(TUICallMediaType)callMediaType callRole:(TUICallRole)callRole {
     
@@ -180,7 +180,7 @@ TUICallKit.shareInstance().groupCall(userIds: ["100001", "100002", "100003"], gr
 }
 :::
 ::: Swift Swift
-TUICallEngine.shareInstance().add(self)
+TUICallEngine.createInstance().add(self)
 
 public func onCallBegin(roomId: TUIRoomId, callMediaType: TUICallMediaType, callRole: TUICallRole) {
         
