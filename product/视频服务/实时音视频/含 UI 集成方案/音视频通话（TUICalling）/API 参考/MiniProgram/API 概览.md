@@ -15,8 +15,8 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 
 | API | 描述 |
 |-----|-----|
-| [createInstance](#createInstance) | 创建 TUICallEngine 实例（单例模式）|
-| [destroyInstance](#destroyInstance) | 销毁 TUICallEngine 实例（单例模式）|
+| [createInstance](#createInstance) | 创建 TUICallEngine 实例（静态方法）|
+| [destroyInstance](#destroyInstance) | 销毁 TUICallEngine 实例（静态方法）|
 | [on](#on) | 增加事件监听|
 | [off](#off) | 取消事件监听|
 | [call](#call) | 发起 1v1 通话|
@@ -28,10 +28,9 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 | [openCamera](#opencamera) | 开启摄像头|
 | [closeCamera](#closecamera) | 关闭摄像头|
 | [switchCamera](#switchcamera) | 切换前后摄像头|
-| [setHandsFree](#sethandsfree) | 是否开启扬声器|
 | [openMicrophone](#setmicmute) | 打开麦克风|
 | [closeMicrophone](#sethandsfree) | 关闭麦克风|
-| [selectAudioPlaybackDevice](#setmicmute) | 选择音频播放设备（听筒/免提）|
+| [selectAudioPlaybackDevice](#setmicmute) | 选择音频播放设备（听筒/扬声器）|
 | [setSelfInfo](#setselfinfo) | 设置用户的头像、昵称|
 
 
@@ -39,9 +38,9 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 | API | 描述 |
 |-----|-----|
 | [EVENT](#evenlist) | 通话的事件表 |
-| [CALL_STATUS](#CALL_STATUS) | 通话的状态，枚举类型：默认、呼叫中/被呼叫中 接通中|
-| [MEDIA_TYPE](#MEDIA_TYPE) | 通话的类型 枚举类型 音频 视频 |
-| [AUDIO_PLAYBACK_DEVICE](#AUDIO_PLAYBACK_DEVICE) | 声音的播放设备 枚举类型：扬声器、听筒 |
+| [CALL_STATUS](#CALL_STATUS) | 通话的状态 默认、呼叫中/被呼叫中 接通中|
+| [MEDIA_TYPE](#MEDIA_TYPE) | 通话的类型  音频 视频 |
+| [AUDIO_PLAYBACK_DEVICE](#AUDIO_PLAYBACK_DEVICE) | 声音的播放设备 扬声器、听筒 |
 
 
 [](id:evenlist)

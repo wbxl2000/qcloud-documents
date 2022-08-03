@@ -8,7 +8,6 @@ TUICallKit API 是音视频通话组件的**含 UI 接口**，使用TUICallKit A
 | API | 描述 |
 |-----|-----|
 | [call](#call) | 发起 1v1 通话|
-| [groupCall](#groupCall) | 发起群组通话|
 | [setSelfInfo](#setSelfInfo) | 设置用户的头像、昵称|
 
 
@@ -18,7 +17,10 @@ TUICallKit API 是音视频通话组件的**含 UI 接口**，使用TUICallKit A
 C2C邀请通话，被邀请方会收到的回调，如果当前处于通话中，可以调用该函数以邀请第三方进入通话
 
 ```javascript
- call(params)
+call({
+    userID:"xxxxxxx",
+    type:MEDIA_TYPE.AUDIO
+})
 ```
 
 参数如下表所示：
@@ -26,33 +28,19 @@ C2C邀请通话，被邀请方会收到的回调，如果当前处于通话中�
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
 | userID | String | 目标用户的userId |
-| type | TUICallMediaType | 通话的媒体类型，1-语音通话，2-视频通话|
-
-
-### groupCall
-IM群组邀请通话，被邀请方会收到的回调，如果当前处于通话中，可以继续调用该函数继续邀请他人进入通话，同时正在通话的用户会收到的回调
-
-```javascript
-groupCall(params) 
-```
-
-| 参数 | 类型 | 含义 |
-|-----|-----|-----|
-| groupId | String | 此次群组通话的群Id. |
-| userIDList | List | 邀请列表 |
-| type | TUICallMediaType | 通话的媒体类型，1-语音通话，2-视频通话|
+| type | [MEDIA_TYPE](#MEDIA_TYPE) | 通话的媒体类型，AUDIO-语音通话，VIDEO-视频通话|
 
 
 ### setSelfInfo
 设置用户头像、昵称的接口
 
 ```javascript
-setSelfInfo(nickName, avatar) ;
+setSelfInfo('xxxxxxx','头像.png') ;
 ```
 
 参数如下表所示：
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| nickName | String | 设置个人昵称 |
-| avatar | String | 设置个人昵称 |
+| nickName | String | 设置昵称 |
+| avatar | String | 头像地址 |

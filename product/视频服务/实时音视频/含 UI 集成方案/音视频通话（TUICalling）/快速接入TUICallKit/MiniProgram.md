@@ -7,7 +7,7 @@ TUICalling 小程序平台音视频通话组件支持如下两种接入方式：
 本文以`TUICallKit`的接入为主，如果您需要使用`TUICallEngine`进行接入，可以参考 [TUICallEngine API]()。
 
 ## 接入TUICallKit
-通过集成TUICallKit，您可以通过对方 UserId 直接拨打一个 1v1 通话，也可以在创建一个群组后，通过TUICallKit 来发起一次群组通话，开始接入！
+通过集成TUICallKit，您可以通过对方 UserId 直接拨打一个 1v1 通话。
 
 ### 步骤一：开通小程序权限
 由于 TUICallKit 所使用的小程序标签有更苛刻的权限要求，因此集成 TUICallKit 的第一步就是要开通小程序的类目和标签使用权限，否则无法使用，这包括如下步骤：
@@ -46,7 +46,7 @@ wss://wss.tim.qq.com
 - Secretkey：TRTC 的应用密钥，需要和 SDKAppID 配对使用，用于签出合法使用 TRTC 服务的鉴权用票据 UserSig，我们会在接下来的步骤五中用到这个 Key。
 
 ### 步骤四：下载并导入 TUICallKit 组件
-单击进入 Github ，选择克隆/下载代码，然后拷贝 MiniProgram 下的 TUICallKit 目录到您的工程中。
+单击进入 Github ，选择克隆/下载代码，然后拷贝 MiniProgram 下的 TUICallKit 和 TUICallEngine 目录到您的工程中。
 
 ### 步骤五：创建并初始化 TUI 组件库
 1.添加组件到对应页面的 页面配置，例如 pages/index/index.json：
@@ -113,7 +113,7 @@ Page({
     call: function() {
         // 注：初始化完成后调用call方法
         // type 1：语音通话，2：视频通话。
-        this.TUICallKit.call({ userID: this.data.userId, type:2})
+        this.TUICallKit.call({ userID: this.data.userId, type:wx.$TUICallEngine.MEDIA_TYPE.VIDEO})
     },
 
     call() { 
