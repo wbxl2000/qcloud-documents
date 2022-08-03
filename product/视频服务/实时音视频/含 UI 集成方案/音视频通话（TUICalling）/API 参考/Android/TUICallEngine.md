@@ -20,7 +20,6 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 | [inviteUser](#inviteUser) | 在群组通话中，邀请其他人加入 |
 | [joinInGroupCall](#joinInGroupCall) | 主动加入当前的群组通话中 |
 | [switchCallMediaType](#switchCallMediaType) | 切换通话媒体类型，比如视频通话切音频通话|
-| [setRenderView](#setRenderView) | 设置显示视频画面的 View 对象 |
 | [startRemoteView](#startRemoteView) | 开始订阅远端用户视频流 |
 | [stopRemoteView](#stopRemoteView) | 停止订阅远端用户视频流 |
 | [openCamera](#opencamera) | 开启摄像头|
@@ -49,13 +48,13 @@ void destroyInstance();
 ### init
 初始化函数，请在使用所有功能之前先调用该函数，以便完成包含通话服务鉴权在内初始化动作。
 ```java
-void init(String sdkAppID, String userId, String userSig， TUIDefine.Callback callback)
+void init(int sdkAppId, String userId, String userSig, TUIDefine.Callback callback)
 ```
 参数如下表所示：
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| sdkAppID | int | 您可以在实时音视频控制台 >【[应用管理](https://console.cloud.tencent.com/trtc/app)】> 应用信息中查看 SDKAppID。 |
+| sdkAppId | int | 您可以在实时音视频控制台 >【[应用管理](https://console.cloud.tencent.com/trtc/app)】> 应用信息中查看 SDKAppID。 |
 | userId | String | 当前用户的 ID，字符串类型，只允许包含英文字母（a-z 和 A-Z）、数字（0-9）、连词符（-）和下划线（\_）。 |
 | userSig | String | 腾讯云设计的一种安全保护签名，获取方式请参见 [如何计算及使用 UserSig](https://cloud.tencent.com/document/product/647/17275)。 |
 | callback | TUIDefine.Callback | 初始化回调，`onSuccess`表示初始化成功。 |
@@ -163,28 +162,15 @@ void switchCallMediaType(TUICallDefine.MediaType callMediaType);
 |-----|-----|-----|
 | callMediaType | TUICallDefine.MediaType | 通话的媒体类型，比如视频通话、语音通话 |
 
-### setRenderView
-视频通话中，给本地和远端用户的设置视频画面显示的View，此接口调用时机如下：
-- 本地：在呼叫/收到来电之前，在`openCamera`之前调用即可。
-- **远端：在收到`onUserJoin`的回调以后，就可以调用这个接口，设置对应userid的视频渲染View；**
-
+### startRemoteView
+开始订阅远端用户的视频数据，此接口在`setRenderView`之后调用。
 ```java
-void setRenderView(String userId, TUIVideoView videoView, TUIDefine.Callback callback);
+void startRemoteView(String userId, TUIVideoView videoView, TUIDefine.PlayCallback callback);
 ```
-
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
 | userId | String | 目标用户的userId |
 | videoView| TUIVideoView | 待渲染的视图 |
-
-### startRemoteView
-开始订阅远端用户的视频数据，此接口在`setRenderView`之后调用。
-```java
-void startRemoteView(String userId, TUIDefine.PlayCallback callback);
-```
-| 参数 | 类型 | 含义 |
-|-----|-----|-----|
-| userId | String | 目标用户的userId |
 
 ### stopRemoteReview
 停止订阅远端用户的视频数据。
@@ -200,11 +186,12 @@ void stopRemoteView(String userId);
 
 开启摄像头。
 ```java
-void openCamera(TUIDefine.Camera camera, TUIDefine.Callback callback);
+void openCamera(TUIDefine.Camera camera, TUIVideoView videoView, TUIDefine.Callback callback);
 ```
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
 | camera | TUIDefine.Camera | 前置/后置 摄像头 |
+| videoView| TUIVideoView | 待渲染的视图 |
 
 ### closeCamera
 

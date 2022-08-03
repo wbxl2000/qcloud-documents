@@ -34,7 +34,6 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 | [inviteUser](#inviteUser) | 在群组通话中，邀请其他人加入 |
 | [joinInGroupCall](#joinInGroupCall) | 主动加入当前的群组通话中 |
 | [switchCallMediaType](#switchCallMediaType) | 切换通话媒体类型，比如视频通话切音频通话|
-| [setRenderView](#setRenderView) | 设置显示视频画面的 View 对象 |
 | [startRemoteView](#startRemoteView) | 开始订阅远端用户视频流 |
 | [stopRemoteView](#stopRemoteView) | 停止订阅远端用户视频流 |
 | [openCamera](#opencamera) | 开启摄像头|
