@@ -5,7 +5,6 @@ TUICallKit API 是音视频通话组件的**含 UI 接口**，使用TUICallKit A
 | API | 描述 |
 |-----|-----|
 | [call](#call) | 发起 1v1 通话|
-| [groupCall](#groupCall) | 发起群组通话|
 | [setSelfInfo](#setSelfInfo) | 设置用户的头像、昵称|
 
 
@@ -20,7 +19,6 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 | [on](#on) | 增加事件监听|
 | [off](#off) | 取消事件监听|
 | [call](#call) | 发起 1v1 通话|
-| [groupCall](#groupcall) | 发起群组通话|
 | [accept](#accept) | 接听通话 |
 | [reject](#reject) | 拒绝通话 |
 | [hangup](#hangup) | 结束通话|
@@ -35,7 +33,7 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 
 
 ## 关键常量枚举
-| API | 描述 |
+| 常量 | 描述 |
 |-----|-----|
 | [EVENT](#evenlist) | 通话的事件表 |
 | [CALL_STATUS](#CALL_STATUS) | 通话的状态 默认、呼叫中/被呼叫中 接通中|
@@ -46,7 +44,7 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 [](id:evenlist)
 通话的事件表
 
-| CODE | 说明 |
+| 事件名 | 说明 |
 |-----|-----|
 | [INVITED](#INVITED) | 被邀请通话 |
 | [USER_ACCEPT](#USER_ACCEPT) | 用户接听 |
@@ -67,19 +65,17 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 [](id:CALL_STATUS)
 通话的状态
 
-| CODE | 说明 |
+| CALL_STATUS | 说明 |
 |-----|-----|
-| INVITE | 邀请方发起邀请 |
-| CANCEL_INVITE | 邀请方取消邀请 |
-| ACCEPT_INVITE | 被邀请方同意邀请 |
-| REJECT_INVITE| 被邀请方拒绝邀请 |
-| INVITE_TIMEOUT | 被邀请方超时未回复 |
+| IDLE | 默认 |
+| CALLING | 呼叫中/被呼叫中 |
+| CONNECTED | 接通中 |
 
 
 [](id:MEDIA_TYPE)
 通话的类型
 
-| CODE | 说明 |
+| MEDIA_TYPE | 说明 |
 |-----|-----|
 | AUDIO | 音频 |
 | VIDEO | 视频 |
@@ -88,7 +84,7 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 [](id:AUDIO_PLAYBACK_DEVICE)
 声音的播放设备
 
-| CODE | 说明 |
+| AUDIO_PLAYBACK_DEVICE | 说明 |
 |-----|-----|
 | EAR | 听筒 |
 | SPEAKER | 扬声器 |

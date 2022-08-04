@@ -7,8 +7,8 @@ TUICallKit API 是音视频通话组件的**含 UI 接口**，使用TUICallKit A
 
 | API | 描述 |
 |-----|-----|
-| [call](#call) | 发起 1v1 通话|
-| [setSelfInfo](#setSelfInfo) | 设置用户的头像、昵称|
+| [call](#call) | 发起 1v1 通话 |
+| [setSelfInfo](#setSelfInfo) | 设置用户的头像、昵称 |
 
 
 <h2 id="TUICallEngine"> API 详情</h2>
@@ -31,6 +31,16 @@ call({
 | type | [MEDIA_TYPE](#MEDIA_TYPE) | 通话的媒体类型，AUDIO-语音通话，VIDEO-视频通话|
 
 
+[](id:MEDIA_TYPE)
+通话的类型
+
+| MEDIA_TYPE | 说明 |
+|-----|-----|
+| AUDIO | 音频 |
+| VIDEO | 视频 |
+
+
+[](id:setSelfInfo)
 ### setSelfInfo
 设置用户头像、昵称的接口
 
@@ -44,3 +54,4 @@ setSelfInfo('xxxxxxx','头像.png') ;
 |-----|-----|-----|
 | nickName | String | 设置昵称 |
 | avatar | String | 头像地址 |
+
