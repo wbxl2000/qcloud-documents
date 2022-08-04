@@ -52,10 +52,3 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 | [TUICallEvent.CALLING_END]() | 收到该回调说明本次通话结束了|
 | [TUICallEvent.DEVICED_UPDATED]() | 设备列表发生变化的回调 |
 | [TUICallEvent.CALL_TYPE_CHANGED]() | 视频通话切换到语音通话的回调 |
-
-
-
-
-
-
-
