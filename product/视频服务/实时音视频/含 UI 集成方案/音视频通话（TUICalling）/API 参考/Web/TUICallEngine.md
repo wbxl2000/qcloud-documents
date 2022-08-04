@@ -35,28 +35,34 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**。
 
 ### createInstance
 创建 TUICallEngine 的单例。
+
 ```javascript
-trtcCalling.createInstance(context);
+const tuiCallEngine = TUICallEngine.createInstance({
+  SDKAppID: 0, // 接入时需要将0替换为您的云通信应用的 SDKAppID
+  tim: tim     // tim 参数适用于业务中已存在 TIM 实例，为保证 TIM 实例唯一性
+});
 ```
 
 ### destroyInstance
 销毁 TUICallEngine 的单例。
+
 ```javascript
-let promise = trtcCalling.destroyInstance();
+let promise = tuiCallEngine.destroyInstance();
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('destroyInstance error:', error)
+  console.warn('destroyInstance error:', error);
 });
 ```
 
 ### on
 监听事件。
+
 ```javascript
 let onError = function(error) {
   console.log(error);
 };
-trtcCalling.on(TRTCCalling.EVENT.ERROR, onError, this);
+tuiCallEngine.on(TUICallEvent.ERROR, onError, this);
 ```
 
 ### off
@@ -65,44 +71,44 @@ trtcCalling.on(TRTCCalling.EVENT.ERROR, onError, this);
 let onError = function(error) {
   console.log(error);
 };
-trtcCalling.on(TRTCCalling.EVENT.ERROR, onError, this);
+tuiCallEngine.on(TUICallEvent.ERROR, onError, this);
 ```
 
 ### login
 登录接口。
 ```javascript
-let promise = trtcCalling.login({userID: 'your userID', userSig: 'your userSig'});
+let promise = tuiCallEngine.login({userID: 'your userID', userSig: 'your userSig'});
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('login error:', error)
+  console.warn('login error:', error);
 });
 ```
 
 ### logout
 登出接口。
 ```javascript
-let promise = trtcCalling.logout();
+let promise = tuiCallEngine.logout();
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('logout error:', error)
+  console.warn('logout error:', error);
 });
 ```
 
 ### setSelfInfo
 设置用户昵称和头像。
 ```javascript
-let promise = trtcCalling.setSelfInfo("username", "avaterlink");
+let promise = tuiCallEngine.setSelfInfo("username", "avaterlink");
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('setSelfInfo error:', error)
+  console.warn('setSelfInfo error:', error);
 });
 ```
 
 ### call
-C2C邀请通话。
+C2C 邀请通话。
 
 ```javascript
 const offlinePushInfo = {
@@ -110,16 +116,20 @@ const offlinePushInfo = {
   description: '您有一个通话请求',
   extension: ''
 }
-let promise = trtcCalling.call({userID: 'user1', type: 1, offlinePushInfo: offlinePushInfo});
+let promise = tuiCallEngine.call({
+  userID: 'user1', 
+  type: 1, 
+  offlinePushInfo: offlinePushInfo
+});
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('call error:', error)
+  console.warn('call error:', error);
 });
 ```
 
 ### groupCall
-IM群组邀请通话，被邀请方会收到 `EVENT.INVITED` 事件。
+IM 群组邀请通话，被邀请方会收到 `EVENT.INVITED` 事件。
 
 ```javascript
 const offlinePushInfo = {
@@ -127,21 +137,26 @@ const offlinePushInfo = {
   description: '您有一个通话请求',
   extension: ''
 }
-let promise = trtcCalling.groupCall({userIDList: ['user1', 'user2'], type: 1, groupID: 'IM群组 ID', offlinePushInfo: offlinePushInfo});
+let promise = tuiCallEngine.groupCall({
+  userIDList: ['user1', 'user2'], 
+  type: 1, 
+  groupID: 'IM群组 ID', 
+  offlinePushInfo: offlinePushInfo
+});
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('groupCall error:', error)
+  console.warn('groupCall error:', error);
 });
 ```
 
 ### accept
 
-当您作为被邀请方收到 `EVENT.INVITED` 事件的回调时，可以调用该接口接听来电。
+当您作为被邀请方收到 `TUICallEvent.INVITED` 事件的回调时，可以调用该接口接听来电。
 
 ```javascript
-trtcCalling.on(TrtcCalling.EVENT.INVITED, ({inviteID, sponsor, inviteData}) => {
-  let promise = trtcCalling.accept();
+tuiCallEngine.on(TUICallEvent.INVITED, ({inviteID, sponsor, inviteData}) => {
+  let promise = tuiCallEngine.accept();
    promise.then(() => {
     //success
   }).catch(error => {
@@ -152,10 +167,10 @@ trtcCalling.on(TrtcCalling.EVENT.INVITED, ({inviteID, sponsor, inviteData}) => {
 
 ### reject
 
-拒绝当前通话，当您作为被叫收到 `EVENT.INVITED ` 的回调时，可以调用该函数拒绝来电。
+拒绝当前通话，当您作为被叫收到 `TUICallEvent.INVITED ` 的回调时，可以调用该函数拒绝来电。
 ```javascript
-trtcCalling.on(TrtcCalling.EVENT.INVITED, ({inviteID, sponsor, inviteData}) => {
-  trtcCalling.reject();
+tuiCallEngine.on(TUICallEvent.INVITED, ({inviteID, sponsor, inviteData}) => {
+  tuiCallEngine.reject();
 });
 ```
 
@@ -163,18 +178,18 @@ trtcCalling.on(TrtcCalling.EVENT.INVITED, ({inviteID, sponsor, inviteData}) => {
 挂断当前通话，当您处于通话中，可以调用该函数结束通话。
 
 ```javascript
-trtcCalling.hangup();
+tuiCallEngine.hangup();
 ```
 
 ### switchCallingType
 音视频通话切换。
 
 ```javascript
-let promise = trtcCalling.switchCallingType("audio");
+let promise = tuiCallEngine.switchCallingType("audio");
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('switchCallingType error:', error)
+  console.warn('switchCallingType error:', error);
 });
 ```
 
@@ -182,32 +197,35 @@ promise.then(() => {
 启动远端画面渲染。
 
 ```javascript
-let promise = trtcCalling.startRemoteView({userID: 'user1', videoViewDomID: 'video_1'});
+let promise = tuiCallEngine.startRemoteView({
+  userID: 'user1', 
+  videoViewDomID: 'video_1',
+});
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('startRemoteView error:', error)
+  console.warn('startRemoteView error:', error);
 });
 ```
 ### stopRemoteView
 停止远端画面渲染
 
 ```javascript
-// v1.0.0之前
-trtcCalling.stopRemoteView({userID: 'user1', videoViewDomID: 'video_1'});
-// v1.0.0及其之后
-trtcCalling.stopRemoteView({userID: 'user1'});
+tuiCallEngine.stopRemoteView({userID: 'user1'});
 ```
 
 ### startLocalView
 启动本地画面渲染
 
 ```javascript
-let promise = trtcCalling.startLocalView({userID: 'user1', videoViewDomID: 'video_1'});
+let promise = tuiCallEngine.startLocalView({
+  userID: 'user1', 
+  videoViewDomID: 'video_1'
+});
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('startLocalView error:', error)
+  console.warn('startLocalView error:', error);
 });
 ```
 
@@ -215,55 +233,75 @@ promise.then(() => {
 停止本地画面渲染
 
 ```javascript
-// v1.0.0之前
-trtcCalling.stopLocalView({userID: 'user1', videoViewDomID: 'video_1'});
-// v1.0.0及其之后
-trtcCalling.stopLocalView({userID: 'user1'});
+tuiCallEngine.stopLocalView({userID: 'user1'});
 ```
 
 ### openCamera
 开启摄像头。
 ```javascript
-trtcCalling.openCamera();
+let promise = tuiCallEngine.openCamera();
+promise.then(() => {
+  //success
+}).catch(error => {
+  console.warn('openCamera error:', error);
+});
 ```
 ### closeCamara
 关闭摄像头
 ```javascript
-trtcCalling.closeCamera();
+let promise = tuiCallEngine.closeCamera();
+promise.then(() => {
+  //success
+}).catch(error => {
+  console.warn('closeCamara error:', error);
+});
 ```
 
 ### openMicrophone
 打开麦克风。
 ```javascript
-trtcCalling.openMicrophone();
+let promise = tuiCallEngine.openMicrophone();
+promise.then(() => {
+  //success
+}).catch(error => {
+  console.warn('openMicrophone error:', error);
+});
 ```
 
 ### closeMicrophone
 关闭麦克风。
 ```javascript
-trtcCalling.closeMicrophone();
+let promise = tuiCallEngine.closeMicrophone();
+promise.then(() => {
+  //success
+}).catch(error => {
+  console.warn('closeMicrophone error:', error);
+});
 ```
 
 ### setVideoQuality
 设置视频质量。
 ```javascript
 const profile = '720p';
-trtcCalling.setVideoQuality(profile);
+tuiCallEngine.setVideoQuality(profile);   
 ```
 
 ### getDeviceList
 获取设备列表。
 ```javascript
-let promise = trtcCalling.getDeviceList("audio");
+let promise = tuiCallEngine.getDeviceList("audio");
 promise.then(() => {
   //success
 }).catch(error => {
-  console.warn('getDeviceList error:', error)
+  console.warn('getDeviceList error:', error);
 });
 ```
 
 ### switchDevice
 切换摄像头或麦克风设备。
 ```javascript
-trtcCalling.switchDevice({deviceType: 'video', deviceId: cameras[0].deviceId});
+tuiCallEngine.switchDevice({
+  deviceType: 'video', 
+  deviceId: cameras[0].deviceId
+});
 ```
