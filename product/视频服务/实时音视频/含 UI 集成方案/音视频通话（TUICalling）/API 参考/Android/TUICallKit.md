@@ -27,7 +27,7 @@ TUICallKit createInstance(Context context)
 ### setSelfInfo
 设置用户昵称、头像。用户昵称不能超过500字节，用户头像必须是URL格式。
 ```java
-void setSelfInfo(String nickname, String avatar, TUIDefine.Callback callback)
+void setSelfInfo(String nickname, String avatar, TUICommonDefine.Callback callback)
 ```
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
@@ -65,32 +65,39 @@ void groupCall(String groupId, List<String> userIdList, TUICallDefine.MediaType 
 发起群组通话，注意：使用群组通话前需要创建IM 群组，如果已经创建，请忽略；
 
 ```java
-void joinInGroupCall(TUIDefine.RoomId roomId, String groupId, TUICallDefine.MediaType callMediaType, TUIDefine.Callback callback);
+void joinInGroupCall(TUICommonDefine.RoomId roomId, String groupId, TUICallDefine.MediaType callMediaType, TUICommonDefine.Callback callback);
 ```
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| roomId | TUIDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
+| roomId | TUICommonDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
 | groupId | String | 此次群组通话的群 Id |
 | callMediaType | TUICallDefine.MediaType | 通话的媒体类型，比如视频通话、语音通话 |
 
 
 ### setCallingBell
-设置自定义来电铃音，这里仅限传入本地文件地址，需要确保该文件目录是应用可以访问的。
+设置自定义来电铃音
+
+这里仅限传入本地文件地址，需要确保该文件目录是应用可以访问的。
+
+铃声设置后与设备绑定，更换用户，铃声依旧会生效。
+如需恢复默认铃声，`filePath`传空即可。
 
 ```java
 void setCallingBell(String filePath);
 ```
 
 ### enableMuteMode
-开启/关闭静音模式。
+开启/关闭静音模式
 
 ```java
 void enableMuteMode(boolean enable);
 ```
 
 ### enableFloatWindow
-开启/关闭悬浮窗功能，设置为false后，通话界面左上角的悬浮窗按钮会隐藏。
+开启/关闭悬浮窗功能
+
+默认为`false`，通话界面左上角的悬浮窗按钮隐藏，设置为`true`后显示。
 
 ```java
 void enableFloatWindow(boolean enable);

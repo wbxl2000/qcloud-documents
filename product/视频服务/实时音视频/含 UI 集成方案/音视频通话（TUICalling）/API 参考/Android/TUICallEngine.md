@@ -48,7 +48,7 @@ void destroyInstance();
 ### init
 初始化函数，请在使用所有功能之前先调用该函数，以便完成包含通话服务鉴权在内初始化动作。
 ```java
-void init(int sdkAppId, String userId, String userSig, TUIDefine.Callback callback)
+void init(int sdkAppId, String userId, String userSig, TUICommonDefine.Callback callback)
 ```
 参数如下表所示：
 
@@ -57,7 +57,7 @@ void init(int sdkAppId, String userId, String userSig, TUIDefine.Callback callba
 | sdkAppId | int | 您可以在实时音视频控制台 >【[应用管理](https://console.cloud.tencent.com/trtc/app)】> 应用信息中查看 SDKAppID。 |
 | userId | String | 当前用户的 ID，字符串类型，只允许包含英文字母（a-z 和 A-Z）、数字（0-9）、连词符（-）和下划线（\_）。 |
 | userSig | String | 腾讯云设计的一种安全保护签名，获取方式请参见 [如何计算及使用 UserSig](https://cloud.tencent.com/document/product/647/17275)。 |
-| callback | TUIDefine.Callback | 初始化回调，`onSuccess`表示初始化成功。 |
+| callback | TUICommonDefine.Callback | 初始化回调，`onSuccess`表示初始化成功。 |
 
 ### addObserver
 添加回调接口，您可以通过这个接听，监听`TUICallObserver`相关的事件回调。
@@ -72,17 +72,17 @@ void removeObserver(TUICallObserver observer);
 ```
 
 ### call
-拨打电话（1v1通话）
+拨打电话（1v1通话）。
 
 ```java
-void call(TUIDefine.RoomId roomId, String userId, TUICallDefine.MediaType callMediaType,TUIDefine.Callback callback);
+void call(TUICommonDefine.RoomId roomId, String userId, TUICallDefine.MediaType callMediaType,TUICommonDefine.Callback callback);
 ```
 
 参数如下表所示：
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| roomId | TUIDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
+| roomId | TUICommonDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
 | userId | String | 目标用户的userId |
 | callMediaType | TUICallDefine.MediaType | 通话的媒体类型，比如视频通话、语音通话 |
 
@@ -90,12 +90,12 @@ void call(TUIDefine.RoomId roomId, String userId, TUICallDefine.MediaType callMe
 发起群组通话，注意：使用群组通话前需要创建IM 群组，如果已经创建，请忽略；
 
 ```java
-void groupCall(TUIDefine.RoomId roomId, String groupId, List<String> userIdList,TUICallDefine.MediaType callMediaType, TUIDefine.Callback callback);
+void groupCall(TUICommonDefine.RoomId roomId, String groupId, List<String> userIdList,TUICallDefine.MediaType callMediaType, TUICommonDefine.Callback callback);
 ```
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| roomId | TUIDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
+| roomId | TUICommonDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
 | groupId | String | 此次群组通话的群 Id |
 | userIdList | List | 目标用户的userId 列表 |
 | callMediaType | TUICallDefine.MediaType | 通话的媒体类型，比如视频通话、语音通话 |
@@ -105,14 +105,14 @@ void groupCall(TUIDefine.RoomId roomId, String groupId, List<String> userIdList,
 
 接受当前通话，当您作为被叫收到 `onCallReceived()` 的回调时，可以调用该函数接听来电。
 ```java
-void accept(TUIDefine.Callback callback);
+void accept(TUICommonDefine.Callback callback);
 ```
 
 ### reject
 
 拒绝当前通话，当您作为被叫收到 `onCallReceived()` 的回调时，可以调用该函数拒绝来电。
 ```java
-void reject(TUIDefine.Callback callback);
+void reject(TUICommonDefine.Callback callback);
 ```
 
 ### ignore
@@ -120,21 +120,21 @@ void reject(TUIDefine.Callback callback);
 
 备注：如果您的业务中存在直播、会议等场景，在直播/会议中的情况时，也可以调用这个函数来忽略此次来电；
 ```java
-void ignore(TUIDefine.Callback callback);
+void ignore(TUICommonDefine.Callback callback);
 ```
 
 ### hangup
 挂断当前通话，当您处于通话中，可以调用该函数结束通话。
 
 ```java
-void hangup(TUIDefine.Callback callback);
+void hangup(TUICommonDefine.Callback callback);
 ```
 
 ### inviteUser
 邀请用户加入此次群组通话，使用场景：一个群组通话中的用户主动邀请其他人时使用。
 
 ```java
-void inviteUser(List<String> userIdList, TUIDefine.ValueCallback callback);
+void inviteUser(List<String> userIdList, TUICommonDefine.ValueCallback callback);
 ```
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
@@ -144,11 +144,11 @@ void inviteUser(List<String> userIdList, TUIDefine.ValueCallback callback);
 主动加入此次群组通话，使用场景：群组内用户主动加入此次群组通话使用。
 
 ```java
-void joinInGroupCall(TUIDefine.RoomId roomId, String groupId, TUICallDefine.MediaType callMediaType, TUIDefine.Callback callback);
+void joinInGroupCall(TUICommonDefine.RoomId roomId, String groupId, TUICallDefine.MediaType callMediaType, TUICommonDefine.Callback callback);
 ```
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| roomId | TUIDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
+| roomId | TUICommonDefine.RoomId | 此次通话的音视频房间 Id，目前仅支持数字房间号，后续版本会支持字符串房间号 |
 | groupId | String | 此次群组通话的群 Id |
 | callMediaType | TUICallDefine.MediaType | 通话的媒体类型，比如视频通话、语音通话 |
 
@@ -165,7 +165,7 @@ void switchCallMediaType(TUICallDefine.MediaType callMediaType);
 ### startRemoteView
 开始订阅远端用户的视频数据，此接口在`setRenderView`之后调用。
 ```java
-void startRemoteView(String userId, TUIVideoView videoView, TUIDefine.PlayCallback callback);
+void startRemoteView(String userId, TUIVideoView videoView, TUICommonDefine.PlayCallback callback);
 ```
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
@@ -183,18 +183,16 @@ void stopRemoteView(String userId);
 
 
 ### openCamera
-
 开启摄像头。
 ```java
-void openCamera(TUIDefine.Camera camera, TUIVideoView videoView, TUIDefine.Callback callback);
+void openCamera(TUICommonDefine.Camera camera, TUIVideoView videoView, TUICommonDefine.Callback callback);
 ```
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| camera | TUIDefine.Camera | 前置/后置 摄像头 |
+| camera | TUICommonDefine.Camera | 前置/后置 摄像头 |
 | videoView| TUIVideoView | 待渲染的视图 |
 
 ### closeCamera
-
 关闭摄像头。
 ```java
 void closeCamera();
@@ -203,17 +201,16 @@ void closeCamera();
 ### switchCamera
 切换前后摄像头。
 ```java
-void switchCamera(TUIDefine.Camera camera);
+void switchCamera(TUICommonDefine.Camera camera);
 ```
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| camera | TUIDefine.Camera | 前置/后置 摄像头 |
+| camera | TUICommonDefine.Camera | 前置/后置 摄像头 |
 
 ### openMicrophone
-
 打开麦克风。
 ```java
-void openMicrophone(TUIDefine.Callback callback);
+void openMicrophone(TUICommonDefine.Callback callback);
 ```
 
 ### closeMicrophone
@@ -223,23 +220,24 @@ void closeMicrophone();
 ```
 
 ### selectAudioPlaybackDevice
-
-选择音频播放设备，目前支持听筒、扬声器，在通话场景中，可以使用这个接口来开启/关闭免提模式。
+选择音频播放设备。
+目前支持听筒、扬声器，在通话场景中，可以使用这个接口来开启/关闭免提模式。
 ```java
-void selectAudioPlaybackDevice(TUIDefine.AudioPlaybackDevice device);
+void selectAudioPlaybackDevice(TUICommonDefine.AudioPlaybackDevice device);
 ```
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| device | TUIDefine.AudioPlaybackDevice | 听筒/扬声器 |
+| device | TUICommonDefine.AudioPlaybackDevice | 听筒/扬声器 |
 
 ### setSelfInfo
-设置用户昵称、头像的接口。
+设置用户昵称、头像。
+用户昵称不能超过500字节，用户头像必须是URL格式。
 ```java
-void setSelfInfo(String nickname, String avatar, TUIDefine.Callback callback);
+void setSelfInfo(String nickname, String avatar, TUICommonDefine.Callback callback);
 ```
 
 ### enableMultiDeviceAbility
-开启/关闭 TUICallEngine 的多设备登录模式 （尊享版套餐支持）
+开启/关闭 TUICallEngine 的多设备登录模式 （尊享版套餐支持）。
 ```java
-void enableMultiDeviceAbility(boolean enable, TUIDefine.Callback callback);
+void enableMultiDeviceAbility(boolean enable, TUICommonDefine.Callback callback);
 ```

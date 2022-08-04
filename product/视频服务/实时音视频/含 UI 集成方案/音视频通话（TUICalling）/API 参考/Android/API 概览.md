@@ -73,10 +73,10 @@ TUICallObserver 是 TUICallEngine 对应的回调事件类，您可以通过此�
 | [TUICallDefine.MediaType]() | 通话的媒体类型，枚举类型：视频通话、语音通话 |
 | [TUICallDefine.Role]() | 通话的角色，枚举类型：主叫、被叫 |
 | [TUICallDefine.Status]() | 通话的状态，枚举类型：空闲、待接听、接听中 |
-| [TUIDefine.RoomId]() | 音视频房间Id，支持数字、字符串两种类型 |
-| [TUIDefine.Camera]() | 摄像头Id参数，枚举类型：前摄、后摄|
-| [TUIDefine.AudioPlaybackDevice]() | 声音的播放设备，枚举类型：扬声器、听筒 |
-| [TUIDefine.NetworkQualityInfo]() | 当前的网络质量信息 |
+| [TUICommonDefine.RoomId]() | 音视频房间Id，支持数字、字符串两种类型 |
+| [TUICommonDefine.Camera]() | 摄像头Id参数，枚举类型：前摄、后摄|
+| [TUICommonDefine.AudioPlaybackDevice]() | 声音的播放设备，枚举类型：扬声器、听筒 |
+| [TUICommonDefine.NetworkQualityInfo]() | 当前的网络质量信息 |
 
 
 
