@@ -55,6 +55,7 @@ tuiCallEngine.destroyInstance().then(() => {
 
 ### on
 监听事件。
+
 ```javascript
 let onError = function(error) {
   console.log(error);
