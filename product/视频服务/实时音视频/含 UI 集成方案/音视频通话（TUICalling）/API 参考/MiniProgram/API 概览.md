@@ -4,9 +4,10 @@ TUICallKit API 是音视频通话组件的**含 UI 接口**，使用TUICallKit A
 
 | API | 描述 |
 |-----|-----|
+| [init](#init) | 初始化TUICallKit |
 | [call](#call) | 发起 1v1 通话|
 | [setSelfInfo](#setSelfInfo) | 设置用户的头像、昵称|
-
+| [destroyed](#destroyed) | 销毁TUICallKit |
 
 ## TUICallEngine (无 UI 接口)
 
